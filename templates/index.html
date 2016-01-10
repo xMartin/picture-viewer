@@ -33,11 +33,38 @@ ${data}
 
 	var img = document.querySelector('img');
 
-	function getRandom () {
-		return Math.round(Math.random() * images.length);
+	var pictureHistory = {
+		stack: [],
+
+		push: function (entry) {
+			this.stack.push(entry);
+			this.pointer = this.stack.length - 1;
+		},
+
+		back: function () {
+			if (this.pointer > 0) {
+				this.pointer--;
+			}
+			return this.stack[this.pointer];
+		}
+	};
+
+	function random () {
+		var randomIndex = Math.round(Math.random() * images.length);
+		var nextImage = images[randomIndex];
+		pictureHistory.push(nextImage);
+		img.src = nextImage;
+	}
+
+	function back () {
+		img.src = pictureHistory.back();
 	}
 
 	document.addEventListener('keypress', function (event) {
-		img.src = images[getRandom()];
+		if (event.keyCode === 98) {  // b
+			back();
+		} else {
+			random();
+		}
 	});
 </script>
