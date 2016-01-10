@@ -6,6 +6,9 @@ var fs = require('fs');
 var getImageList = require('./lib/imagelist');
 
 var dirList = process.argv.slice(2);
+dirList = dirList.map(function (dir) {
+  return path.resolve(dir);
+});
 
 function serve(request, response) {
   var urlPath = url.parse(request.url).pathname;
