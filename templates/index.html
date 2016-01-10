@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<style>
+	html, body {
+		margin: 0;,
+		padding: 0;
+		background: #333;
+	}
+	main {
+		width: 100vw;
+		height: 100vh;
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+	}
+	img {
+		max-width: 100%;
+		max-height: 100%;
+		margin: 0;
+	}
+</style>
+
+<main>
+	<img>
+</main>
+
+<script id="data" type="application/json">
+${data}
+</script>
+
+<script>
+	var images = document.getElementById('data').innerHTML;
+	images = JSON.parse(images);
+
+	var img = document.querySelector('img');
+
+	function getRandom () {
+		return Math.round(Math.random() * images.length);
+	}
+
+	document.addEventListener('keypress', function (event) {
+		img.src = images[getRandom()];
+	});
+</script>
