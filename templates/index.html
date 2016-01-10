@@ -33,11 +33,13 @@ ${data}
 
 	var img = document.querySelector('img');
 
+	var index = 0;
+
 	var pictureHistory = {
 		stack: [],
 
-		push: function (entry) {
-			this.stack.push(entry);
+		push: function (index) {
+			this.stack.push(index);
 			this.pointer = this.stack.length - 1;
 		},
 
@@ -50,21 +52,40 @@ ${data}
 	};
 
 	function random () {
-		var randomIndex = Math.round(Math.random() * images.length);
-		var nextImage = images[randomIndex];
-		pictureHistory.push(nextImage);
+		index = Math.round(Math.random() * (images.length - 1));
+		pictureHistory.push(index);
+		var nextImage = images[index];
 		img.src = nextImage;
 	}
 
 	function back () {
-		img.src = pictureHistory.back();
+		index = pictureHistory.back();
+		img.src = images[index];
 	}
 
-	document.addEventListener('keypress', function (event) {
-		if (event.keyCode === 98) {  // b
-			back();
-		} else {
-			random();
+	function next () {
+		if (index < images.length - 1) {
+			pictureHistory.push(++index);
+			var nextImage = images[index];
+			img.src = nextImage;
+		}
+	}
+
+	document.addEventListener('keydown', function (event) {
+		switch (event.keyCode) {
+			case 32:  // space bar
+				random();
+				break;
+			case 66:  // b
+			case 37:  // arrow left
+				back();
+				break;
+			case 39:  // arrow right
+				next();
+				break;
 		}
 	});
+
+	pictureHistory.push(index);
+	img.src = images[index];
 </script>
