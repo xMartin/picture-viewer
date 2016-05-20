@@ -6,5 +6,8 @@
   "author": "xMartin <xmartin@siarp.de>",
   "bin": {
     "picture-viewer": "./bin/picture-viewer"
+  },
+  "dependencies": {
+    "commander": "^2.9.0"
   }
 }

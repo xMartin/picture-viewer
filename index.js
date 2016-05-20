@@ -2,10 +2,20 @@ var http = require('http');
 var url = require('url');
 var path = require('path');
 var fs = require('fs');
+var program = require('commander');
 
 var getImageList = require('./lib/imagelist');
 
-var dirList = process.argv.slice(2);
+program
+  .usage('[options] <dir ...>')
+  .option('-r, --recursive', 'walk through directory/ies recursively')
+  .parse(process.argv);
+
+if (!program.args.length) {
+  program.help();
+}
+
+var dirList = program.args;
 dirList = dirList.map(function (dir) {
   return path.resolve(dir);
 });
@@ -16,7 +26,9 @@ function serve(request, response) {
   var contentType;
 
   if (filename === '/') {
-    var data = getImageList(dirList);
+    var data = getImageList(dirList, {
+      recursive: program.recursive
+    });
     data = JSON.stringify(data, null, ' ');
 
     var template = fs.readFileSync(__dirname + '/templates/index.html', 'utf8');
