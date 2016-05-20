@@ -4,6 +4,8 @@
 		margin: 0;,
 		padding: 0;
 		background: #333;
+		font-family: sans-serif;
+		color: #666;
 	}
 	main {
 		width: 100vw;
@@ -18,10 +20,19 @@
 		display: block;
 		margin: 0 auto;
 	}
+	aside {
+		position: absolute;
+		bottom: 1em;
+		right: 1em;
+	}
+	.hidden {
+		display: none;
+	}
 </style>
 
 <main>
 	<img>
+	<aside class="hidden"></aside>
 </main>
 
 <script id="data" type="application/json">
@@ -33,6 +44,7 @@ ${data}
 	images = JSON.parse(images);
 
 	var img = document.querySelector('img');
+	var info = document.querySelector('aside');
 
 	var index = 0;
 
@@ -75,6 +87,11 @@ ${data}
 	function show (uri) {
 		var encodedUri = encodeURI(uri).replace('#', '%23');
 		img.src = encodedUri;
+		info.innerHTML = uri;
+	}
+
+	function toggelInfo () {
+		info.classList.toggle('hidden');
 	}
 
 	document.addEventListener('keydown', function (event) {
@@ -88,6 +105,9 @@ ${data}
 				break;
 			case 39:  // arrow right
 				next();
+				break;
+			case 73:  // i
+				toggelInfo()
 				break;
 		}
 	});
