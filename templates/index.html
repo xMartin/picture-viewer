@@ -56,20 +56,25 @@ ${data}
 		index = Math.round(Math.random() * (images.length - 1));
 		pictureHistory.push(index);
 		var nextImage = images[index];
-		img.src = nextImage;
+		show(nextImage);
 	}
 
 	function back () {
 		index = pictureHistory.back();
-		img.src = images[index];
+		show(images[index]);
 	}
 
 	function next () {
 		if (index < images.length - 1) {
 			pictureHistory.push(++index);
 			var nextImage = images[index];
-			img.src = nextImage;
+			show(nextImage);
 		}
+	}
+
+	function show (uri) {
+		var encodedUri = encodeURI(uri).replace('#', '%23');
+		img.src = encodedUri;
 	}
 
 	document.addEventListener('keydown', function (event) {
@@ -88,5 +93,5 @@ ${data}
 	});
 
 	pictureHistory.push(index);
-	img.src = images[index];
+	show(images[index]);
 </script>
