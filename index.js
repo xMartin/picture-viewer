@@ -9,6 +9,7 @@ var getImageList = require('./lib/imagelist');
 program
   .usage('[options] <dir ...>')
   .option('-r, --recursive', 'walk through directory/ies recursively')
+  .option('-i, --ignore [pattern]', 'file path pattern to ignore (regex)')
   .parse(process.argv);
 
 if (!program.args.length) {
@@ -27,7 +28,8 @@ function serve(request, response) {
 
   if (filename === '/') {
     var data = getImageList(dirList, {
-      recursive: program.recursive
+      recursive: program.recursive,
+      ignore: program.ignore
     });
     data = JSON.stringify(data, null, ' ');
 
