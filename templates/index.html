@@ -84,6 +84,14 @@ ${data}
 		}
 	}
 
+	function previous () {
+		if (index > 0) {
+			pictureHistory.push(--index);
+			var nextImage = images[index];
+			show(nextImage);
+		}
+	}
+
 	function show (uri) {
 		var encodedUri = encodeURI(uri).replace('#', '%23');
 		img.src = encodedUri;
@@ -99,9 +107,11 @@ ${data}
 			case 32:  // space bar
 				random();
 				break;
-			case 66:  // b
-			case 37:  // arrow left
+			case 8:  // backspace
 				back();
+				break;
+			case 37:  // arrow left
+				previous();
 				break;
 			case 39:  // arrow right
 				next();
