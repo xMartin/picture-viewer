@@ -5,7 +5,7 @@ A simple NodeJS-based web application to display images from the file system.
 ## Install and run
 
 ```
-npm install -g @xMartin/picture-viewer
+npm install -g @xmartin/picture-viewer
 ```
 
 will setup a global executable so you can just run
