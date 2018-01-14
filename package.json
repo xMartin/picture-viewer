@@ -1,6 +1,6 @@
 {
   "name": "@xmartin/picture-viewer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple NodeJS-based web application to display images from the file system.",
   "main": "index.js",
   "author": "xMartin <xmartin@siarp.de>",
