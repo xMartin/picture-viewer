@@ -1,7 +1,7 @@
 {
-  "name": "picture-viewer",
+  "name": "@xmartin/picture-viewer",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple NodeJS-based web application to display images from the file system.",
   "main": "index.js",
   "author": "xMartin <xmartin@siarp.de>",
   "bin": {
@@ -9,5 +9,7 @@
   },
   "dependencies": {
     "commander": "^2.9.0"
-  }
+  },
+  "license": "MIT",
+  "repository": "git@github.com:xMartin/picture-viewer.git"
 }
